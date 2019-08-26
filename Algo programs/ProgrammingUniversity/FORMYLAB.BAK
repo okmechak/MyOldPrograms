@@ -1,0 +1,41 @@
+program integral;
+ uses crt;
+ var eps,a,b,s,t,l,fun2:real;
+
+funcTION fun(l:real):real;
+ const h=6.62e-34;
+       c=3e8;
+       k=1.38e-23;
+ begin
+  fun:=2*h*c*c/(l*sqr(sqr(l))*(exp(h*c/l/k/t)-1));
+ end;
+
+
+procedure int(a,b,eps:real; var s:real);
+ var i,n:integer;
+     xi:real;
+ begin
+    n:=round((a-b)/eps);
+    s:=0;
+    xi:=a;
+    for i:=0 to n do
+      begin
+       s:=s+fun(xi);
+       xi:=xi+eps;
+       end;
+    s:=((b-a)/n)*(fun(a)+s);
+ end;
+
+
+begin
+ clrscr;
+ a:=0.0001;
+ b:=9999999;
+ readln(eps);
+ readln(t);
+ fun2:=5.67032e-8*sqr(sqr(t));
+ int(a,b,eps,s);
+ writeln(fun2,'integral F(x) - ',s:1:5);
+ writeln(abs(fun2-s):3:5);
+ readln;
+end.

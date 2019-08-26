@@ -1,0 +1,113 @@
+program dsf;
+uses crt,graph;
+const n=40;
+      m=n+1;
+type vector=array[1..n]of real;
+      matrix =array[1..n,1..m]of real;
+       tochku=record
+        x,y:vector;
+        end;
+var x,y,sum:real;
+    sk:matrix;
+    k,zn:vector;
+    FL:text;
+    W:STRING;
+    et:tochku;
+    NN,i,j:integer;
+
+
+
+procedure gaus(s:matrix;var kv:vector);
+ var k,sum:real;
+    f:integer;
+ begin
+  for f:=1 to n-1 do
+    for i:=f+1 to n do
+      for j:=1 to m do s[i,j]:=s[i,j]-s[i,f]*s[f,j]/s[f,f];
+
+  for i:=m downto 1 do
+   begin
+    sum:=0;
+    for j:=i to m do sum:=sum+kv[j];
+    s[n,i]:=s[n,i]-sum;
+    kv[i]:=s[n,i]/s[i,i];
+   end;
+ end;
+
+
+procedure readet(var eti:tochku);
+ begin
+  nn:=0;
+  w:='f:\Student\Fzf-12\alli\ex2.txt';
+  assign(fl,w);
+  reset(fl);
+  while not(eof(fl))do
+   begin
+    read(fl,eti.x[nn]);
+    read(fl,eti.y[nn]);
+    nn:=nn+1;
+   end;
+ end;
+
+function step(x:real; n:integer):real;
+ var i:integer;
+    c:real;
+  begin
+  c:=1;
+  for i:=1 to n do c:=c*x;
+  if n=0 then c:=1;
+  step:=c;
+ end;
+
+
+procedure graphik(k:vector);
+ var dm,dt:integer;
+     xmax,ymax:real;
+
+ function f(x:real,k:vector):real;
+  var kj:real
+  begin
+   kj:=0;
+   for i:=1 to n do kj:=kj+step(x,i-1)*k[i];
+   f:=kj;
+  end;
+
+ begin
+  dt:=detect;
+  initgraph(dt,dm,'f:\bp\bgi');
+  xmax:=et.x[0];
+  ymax:=et.y[0];
+  for i:=1 to nn do
+   begin
+    if abs(et.x[i])>xmax then xmax:=abs(et.x[i]);
+    if abs(et.y[i])>ymax then ymax:=abs(et.y[i]);
+   end;
+   line(0,240,700,240);
+   line(320,0,320,500);
+   x:=-xmax;
+   moveto(round(320*et.x[0]/xmax)+320,-round(240*et.y[0]/ymax)+240);
+   while x<=xmax do
+    begin
+      x:=x+0.05;
+      y:=f(x,k);
+      lineto(round(320*x/xmax)+240,-round(240*y/ymax)+240);
+    end;
+ end;
+
+
+procedure build(var sk:matrix);
+ var zn:vector
+ begin
+  for i:=1 to n+n-1 do for j:=1 to nn do zn[i]:=zn[i]+step(et.x[j] , i-1);
+  for i:=1 to n do for j:=1 to n do sk[i,j]:=zn[j+i-1];  {super!!!}
+  for i:=1 to n do
+    for j:=1 to nn do sk[i,m]:=sk[i,m]+et.y[j]*step(et.x[j],i-1);
+ end;
+
+begin
+ readet(et);
+ build(sk);
+ gaus(sk,k);
+ graphik(k);
+readkey
+end.

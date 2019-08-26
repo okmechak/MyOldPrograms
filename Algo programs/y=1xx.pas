@@ -1,0 +1,15 @@
+PROGRAM SJHF; 
+VAR 
+   X,Y:INTEGER; 
+BEGIN
+  FOR X:=1 TO 10000 DO 
+    BEGIN
+     IF X=1 THEN POINT(0,9111);
+     PEN(13,100, 0, 100);
+     Y:=ROUND(100/SQR(X/100)); 
+     LINETO(X*10+100,ROUND(Y/100)+100);
+     BRUSH(1,0,150,0);
+     IF X=1 THEN
+     FILL(70,30);
+    END; 
+END.

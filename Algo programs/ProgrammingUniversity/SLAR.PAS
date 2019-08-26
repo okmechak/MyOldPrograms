@@ -1,0 +1,38 @@
+program slar;
+uses crt;
+const m=4;
+      n=m+1;
+type matrix=array[1..n,1..m]of real;
+     vector=array[1..m]of real;
+var i,j,k:integer;
+    rm:matrix;
+    x:vector;
+    sum:real;
+
+procedure mgausa(Ma:matrix; var X:vector);
+  begin
+   for k:=1 to n-2 do
+    for j:=k+1 to m do
+     for i:=m downto k do ma[i,j]:=ma[i,j]-ma[i,k]/ma[k,k]*ma[k,j];
+   for i:= m downto 1 do
+    begin
+     sum:=0;
+     for k:=i to m do sum:=sum+x[k]*ma[k,i];
+     ma[n,i]:=ma[n,i]-sum;
+     x[i]:=ma[n,i]/ma[i,i];
+    end;
+  end;
+
+begin
+ clrscr;
+ rm[1,1]:=1; rm[2,1]:= 1; rm[3,1]:=1; rm[4,1]:=1; rm[5,1]:=4;
+ rm[1,2]:=2; rm[2,2]:= 1; rm[3,2]:=1; rm[4,2]:=1; rm[5,2]:=5;
+ rm[1,3]:=3; rm[2,3]:= 7; rm[3,3]:=1; rm[4,3]:=1; rm[5,3]:=12;
+ rm[1,4]:=4; rm[2,4]:= 3; rm[3,4]:=1; rm[4,4]:=0; rm[5,4]:=8;
+{for j:=1 to m do begin for i:=1 to n do begin write('  rm[',i,',',j,']='); read(rm[i,j]) end; writeln  end;}
+ for j:=1 to m do begin for i:=1 to n Do write('rm[',i,',',j,']=',rm[i,j]:2:2,'  '); writeln end;
+ writeln;
+ mgausa(rm,x);
+ for i:=1 to m do writeln('x[',i,']=',x[i]:2:5);
+ readln;
+end.

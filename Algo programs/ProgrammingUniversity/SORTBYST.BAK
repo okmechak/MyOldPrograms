@@ -1,0 +1,60 @@
+program sortmatrix;
+uses crt;
+const m=5;
+      n=5;
+type  schm=1..m;
+      schn=1..n;
+      matrix=array[schm,schn]of integer;
+var   A:matrix;
+      i:schm; j:schn;
+      b:integer;
+
+procedure readm(var a:matrix);
+ begin
+ randomize;
+  for i:=1 to m do
+    begin
+     for j:=1 to n do a[i,j]:=random(10);
+    end;
+ end;
+
+procedure writem(a:matrix);
+  begin
+  for i:=1 to m do
+    begin
+     for j:=1 to n do write(a[i,j],'  ');
+     writeln
+    end;
+ end;
+
+procedure sortm(var a:matrix);
+ var c:integer;
+ begin
+   for i:=1 to m-1 do
+    for i:=1 to m-1 do
+     if a[i,1]<a[i+1,1] then
+      for j:=1 to n do
+       begin
+        c:=a[i,j];
+        a[i,j]:=a[i+1,j];
+        a[i+1,j]:=c;
+       end;
+
+ end;
+
+
+
+begin
+clrscr;
+readm(a);
+writem(a);
+sortm(a);
+writeln('--------');
+writem(a);
+readln;
+
+
+
+
+
+end.
