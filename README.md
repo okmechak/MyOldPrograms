@@ -37,8 +37,7 @@
 
 Після недовгого часу потраченого на ігри(відносно не довгого), прийшов час більш серйозним програмам, а саме Sony Vegas, Adobe Photoshop, Virtual Dub, Pincale Studio, Hollywood FX і інші. Окремо варто зауважити WinAmp із його візуальними ефектами, які піддавались програмуванню. Оскільки в цей час ми займалися паркуром, то була необхідність займатися монтажем. Кілька відео:
 
-<iframe src="https://drive.google.com/embeddedfolderview?id=1wJpBeVY-ARI8FIdYkzH1M1eXB17L-5SB#list" width="600" height="240" frameborder="0"></iframe>
-
+[![Паркур відео](Images/drive.jpg)](https://drive.google.com/embeddedfolderview?id=1wJpBeVY-ARI8FIdYkzH1M1eXB17L-5SB#list)
 
 Працювати із Sony Vegas - було суцільним задоволенням. З кожним разом відкриваєш для себе нові можливості цього інструменту. В якийсь момент в мене виникло питання: "А як все ж створюють ці всі програми?". Відповідь не заставила себе довго чекати. 
 
